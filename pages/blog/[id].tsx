@@ -3,12 +3,20 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { client } from '../../libs/client';
 import styles from '../../styles/Home.module.scss';
+import { renderToc } from '../../libs/render-toc'; 
+import { TableOfContents } from '../../component/TableOfContent';
+
+
+
 
 const BlogId = ({ blog }: BlogIdProps) => {
+  const toc = renderToc(blog.body);
+  console.log(toc); // 検証用にconsole.logでデバッグ
   return (
     <main className={styles.main}>
       <h1 className={styles.title}>{blog.title}</h1>
       <p className={styles.publishedAt}>{blog.createdAt}</p>
+      <TableOfContents toc={toc} />
       <div
         dangerouslySetInnerHTML={{
           __html: `${blog.body}`,
@@ -46,6 +54,9 @@ export const getStaticProps: GetStaticProps<BlogIdProps> = async (context) => {
   return {
     props: {
       blog: data,
+      
     },
   };
 };
+
+
