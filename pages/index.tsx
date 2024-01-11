@@ -3,7 +3,7 @@ import { client } from "../libs/client";
 import { Pagination } from "../component/Pagination";
 
 
-export default function Home({ blog, totalCount,category }: { blog: Array<any>; totalCount: number,category: any }) {
+export default function Home({ blog, totalCount,category }: { blog: Array<any>; totalCount: number,category: Array<any> }) {
   return (
     <div>
       <ul>
